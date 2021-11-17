@@ -1,56 +1,77 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Potencia De Un Número </title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/estilos.css" />
-    <script src="JavaScript/libs/bignumber.js/bignumber.min.js"></script>
-    <script src="JavaScript/libs/numeral.js/numeral.min.js"></script>
-  </head>
-  <body>
-    <header>
-      <center>
-      <h1>Potencia de un Número</h1>
-    </header>
-    <center>
-    <form id="forma" action="javascript:operacion()">
-      <p>
-        <label accesskey="P">
-          Potencia:
-          <input
-            name="potencia"
-            id ="potencia"
-            type="text"
-            class="numero"
-            required
-            maxlength="10"
-            size="13"
-          />
-        </label>
-            <input type="submit" value="Generar" accesskey="G">
-            <input type="submit" value="Limpiar" accesskey="L">
-        <br /><output id="salidaPotencia"></output>
-      </p>
+class Forma {
+constructor(color, nombreForma){
+this.color = color; 
+this.nombreForma = nombreForma;
+}
+forma(color,nombreForma){
+console.log('Soy ', this.nombreForma);
+console.log('Y mi color es el ', this.color);
+}
+  calculaArea(){
+    throw new Error ("abstrac");
+       }
+  calculaPerimetro(){
+   throw new Error ("abstrac");
+    }
+}
 
-      <textarea id="resultado:" cols="30" rows="10">
+class Rectangulo extends Forma{
+  constructor(color,nombreForma,laMenor,laMayor){
+  super(color,nombreForma); 
+  this.laMenor = laMenor;
+  this.laMayor = laMayor;
+ }
+ calculaArea(laMenor,laMayor){
+    console.log('El area es:',laMenor*laMayor);
+       }
+       
+  calculaPerimetro(laMenor,laMayor){
+    console.log('El pemimetro es:', (2*( laMenor + laMayor)));
+    }
+}
+ 
+ class Triangulo extends Forma{
+  constructor(color,nomForma,base,altura){
+  super(color,nombreForma); 
+  this.base = base;
+  this.altura = altura;
+ }
+ calculaArea(base,altura){
+    console.log('El area es:',((base*altura)/2));
+       }
+       
+  calculaPerimetro(base){
+    console.log('El pemimetro es:', base+base+base);
+    }
+}
 
-      </textarea>
-     </center>
-    </form>
-    </center>
-    <footer>
-      <br />
-      <center>
-      Copyright 2021 
-      <p>
-        Gonzalez Gasca Carolina Irene 
-      </p>
-      <p>
-        Sec. 3CV51
-      </p>
-      </center>
-    </footer>
-    <script src="script.js"></script>
-  </body>
-</html>
+class Circulo extends Forma{
+  constructor(color,nombreForma,radio){
+  super(color,nombreForma); 
+  this.radio = radio;
+  }
+   calculaArea(radio){    
+    console.log('El area es:',(3.1416*(radio*radio)));
+       }
+       
+  calculaPerimetro(radio){ 
+    console.log('El pemimetro es:', (3.1416*2*radio));
+    }
+ }
+ 
+ 
+
+  const R = new Rectangulo("azul","Rectangulo",3,5);
+  R.forma();
+  R.calculaArea(R.laMenor,R.laMayor);
+  R.calculaPerimetro(R.laMenor,R.laMayor);
+  
+  const T = new Triangulo("morado","Triangulo",5,2);
+  T.forma();
+  T.calculaArea(T.base,T.altura);
+  T.calculaPerimetro(T.base);
+  
+  const C = new Circulo("naranja","Circulo",10);
+  C.forma();
+  C.calculaPerimetro(C.radio);
+  C.calculaArea(C.radio);
